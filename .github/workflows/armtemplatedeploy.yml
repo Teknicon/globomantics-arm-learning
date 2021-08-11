@@ -26,3 +26,13 @@ jobs:
           region: "Australia East"
           template: ./arm-template/resourcegroup.json
           deploymentName: rg-githubactions
+
+      - name: Deploy Storage Account
+        uses: Azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          resourceGroupName: rg-githubactions
+          subscriptionId: af2c7e37-48d7-4047-adda-3b5eaabed370
+          template: ./arm-template/storageaccount.json
+          parameters: ./arm-template/storageaccount.parameters.json
+          deploymentMode: incremental
